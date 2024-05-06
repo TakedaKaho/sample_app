@@ -5,7 +5,8 @@
     eachの時は　％の後ろの＝いらない　-->
 
 <p>タイトル</p>
-
-<span><% list.title %></span>　<!--カラム名　縦　いちばん上　今回はtitle-->
+<span>
+    <%= link_to list.title, list_path(list.id) %>
+</span>
 
 <% end %>

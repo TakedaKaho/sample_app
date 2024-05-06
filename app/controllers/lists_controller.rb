@@ -10,7 +10,7 @@ class ListsController < ApplicationController
     # 3. データをデータベースに保存するためのsaveメソッド実行
     list.save
     # 4. トップ画面へリダイレクト　redirect_to」は画面を遷移するためのメソッド
-    redirect_to '/top'
+    redirect_to list_path(list.id)
  end 
 
 
@@ -19,7 +19,9 @@ class ListsController < ApplicationController
   end
 
   def show
-  end
+      @list = List.find(params[:id]) #今回はレコードを1件だけ取得するので、インスタンス変数名は単数形
+  end                   #params[:id] は決まり？？
+         #allは全て、に対しfindメソッドは引数を受け取り、idカラムを引数と比べてレコードを取得。
 
   def edit
   end
