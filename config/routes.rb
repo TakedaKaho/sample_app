@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'lists/new'  #GETはデータの取得をするためのHTTPメソッド
   post 'lists' => 'lists#create' #POSTはデータを新規保存するためのHTTPメソッド
-  get 'lists/index'
+  get 'lists' =>'lists#index'
   get 'lists/show'
   get 'lists/edit'
   get 'top' => 'homes#top'

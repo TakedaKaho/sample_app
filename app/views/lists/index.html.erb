@@ -1,2 +1,11 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+<h1>投稿一覧</h1>
+　　　　　　　　　
+<% @lists.each do |list| %> <!--each 配列やハッシュがもつ要素を順番に取得して処理を実行
+@lists.eachと記述することで、Listレコードの数だけ繰り返し処理を行う。
+    eachの時は　％の後ろの＝いらない　-->
+
+<p>タイトル</p>
+
+<span><% list.title %></span>　<!--カラム名　縦　いちばん上　今回はtitle-->
+
+<% end %>
