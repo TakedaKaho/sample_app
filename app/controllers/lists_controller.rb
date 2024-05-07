@@ -33,12 +33,19 @@ class ListsController < ApplicationController
     redirect_to list_path(list.id)  
   end
   
-  private # ストロングパラメータ
+  def destroy #消去
+      list = List.find(params[:id]) #list(データベース)から消す。findで対象探す
+      list.destroy #探せたら消す
+      redirect_to '/lists' #消せたら戻る。今回は一覧に戻るため'/lists'　getと
+  end 
+  
+  private #プライベート
   #privateは一種の境界線で、「ここから下はこのcontrollerの中でしか呼び出せません」てゆう意味
   #privateより後に定義されたメソッドは、アクションとして認識されなくなり、URLと対応できなくなる
   def 
     list_params #paramsとは、フォームなどによって送られてきた情報（パラメーター）を取得するメソッド
-    params.require(:list).permit(:title, :body,:image)
+    # ↓がストロングパラメータ。悪質なコードとかを入力されるのを防ぐ人工知能的な。
+    params.require(:list).permit(:title, :body,:image) #入力をされる→悪質な悪戯を受ける可能性があるから入力勢（titleとか）この知能を入れとく。
     # require. 送られてきたデータの中からモデル名(ここでは:list)を指定し、データを絞り込みます。
     # permit.   requireで絞り込んだデータの中から、保存を許可するカラムを指定します。
   end 
