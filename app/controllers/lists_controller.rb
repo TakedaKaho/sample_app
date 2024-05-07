@@ -37,9 +37,10 @@ class ListsController < ApplicationController
   #privateは一種の境界線で、「ここから下はこのcontrollerの中でしか呼び出せません」てゆう意味
   #privateより後に定義されたメソッドは、アクションとして認識されなくなり、URLと対応できなくなる
   def 
-    list_params #formから送られてくるデータはparamsの中に入っています。
-    params.require(:list).permit(:title, :body)
+    list_params #paramsとは、フォームなどによって送られてきた情報（パラメーター）を取得するメソッド
+    params.require(:list).permit(:title, :body,:image)
     # require. 送られてきたデータの中からモデル名(ここでは:list)を指定し、データを絞り込みます。
     # permit.   requireで絞り込んだデータの中から、保存を許可するカラムを指定します。
   end 
+  
 end
