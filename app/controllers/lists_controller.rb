@@ -4,14 +4,15 @@ class ListsController < ApplicationController
     @list = List.new  
   end
 
- def create #投稿を保存するためのcreateアクション
-   # １.&2. データを受け取り新規登録するためのインスタンス作成
-    list = List.new(list_params) #viewに渡さないから＠Listじゃない。ローカル変数
-    # 3. データをデータベースに保存するためのsaveメソッド実行
-    list.save
-    # 4. トップ画面へリダイレクト　redirect_to」は画面を遷移するためのメソッド
-    redirect_to list_path(list.id)
+ def create #保存 #viewファイルに写す必要が出たから＠verになる　ただの保存ならList=でいい
+    @list = List.new(list_params) 
+    if @list.save #データをデータベースに保存するためのsaveメソッド実行
+       redirect_to list_path(@list.id) #listやからshow(詳細に戻る)
+     else 
+       render:new #renderはアクション名　同じコントローラ内の別アクションのViewを表示できます
+     end 
  end 
+ 
 
 
   def index #書籍の巻末の索引のように、多数のものの中から特定の対象をすばやく見つけ出すため識別情報や、整列された所在情報の一覧などを指す

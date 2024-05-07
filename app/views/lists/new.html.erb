@@ -1,4 +1,15 @@
 <h1>新規投稿</h1>
+
+<% if @list.errors.any? %> <!--errorsは、発生したエラーの内容を確認できるメソッドです。any? と組み合わせると、エラーが発生しているかどうかを判定できる。-->
+  <%= @list.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_messages.each do |message| %> <!--エラーの数だけメッセージ繰り返してくれる-->
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
  <%= form_with model: @list, url: '/lists', methood: :post do |f| %> 
  <!--@の後ろが大文字なのか小文字なのかが違うだけで合わなくなる-->
 
