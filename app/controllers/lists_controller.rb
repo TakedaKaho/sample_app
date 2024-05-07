@@ -23,7 +23,14 @@ class ListsController < ApplicationController
   end                   #params[:id] は決まり？？
          #allは全て、に対しfindメソッドは引数を受け取り、idカラムを引数と比べてレコードを取得。
 
-  def edit
+  def edit #編集という意味
+      @list = List.find(params[:id]) #投稿済みのデータを編集するからfind(s探す)を使う
+  end
+  
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)  
   end
   
   private # ストロングパラメータ
