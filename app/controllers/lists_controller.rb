@@ -7,8 +7,10 @@ class ListsController < ApplicationController
  def create #保存 #viewファイルに写す必要が出たから＠verになる　ただの保存ならList=でいい
     @list = List.new(list_params) 
     if @list.save #データをデータベースに保存するためのsaveメソッド実行
-       redirect_to list_path(@list.id) #listやからshow(詳細に戻る)
+     flash[:notice] = "投稿に成功しました。"   # フラッシュメッセージを定義 12章
+    redirect_to list_path(@list.id) #listやからshow(詳細に戻る)
      else 
+       flash.now[:alert] = "投稿に失敗しました。"
        render:new #renderはアクション名　同じコントローラ内の別アクションのViewを表示できます
      end 
  end 

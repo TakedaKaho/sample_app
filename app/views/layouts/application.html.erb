@@ -28,8 +28,17 @@
         </li>
       </ul>
     </nav>
-    <main>      
+    
+    
+    <main>     
+    <div>
+       <% flash.each do |message_type, message| %>
+      <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
+    </div>
+
     <%= yield %>
+    
     </main>
     
   </body>
